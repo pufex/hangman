@@ -1,0 +1,42 @@
+.failure-window{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.437);
+    z-index: 999;
+}
+
+.failure-container{
+    top: 100vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    animation-name: slideup;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    width: 400px !important;
+    height: 400px !important;
+}
+
+@keyframes slideup{
+    from{
+        top: 100vh;
+    }to{
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.failure-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.failure-header{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

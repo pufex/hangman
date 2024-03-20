@@ -1,0 +1,24 @@
+.letter-container{
+    display: grid;
+    place-items: center;
+    height: 5rem;
+    width: 4.5rem;
+    font-weight: 600;
+    font-size: 3rem;
+    border-radius: 35%;
+    background-color: rgba(1, 37, 96, 0.843);
+    border-color: rgba(50, 121, 254, 0.217);
+    border-width: 0;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.letter-container.active{
+    background-color: rgb(0, 96, 251);
+    border-bottom-width: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 2px;
+    color: white;
+    font-family: "Gothic A1", sans-serif;
+}

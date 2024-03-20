@@ -1,0 +1,30 @@
+.nav-contianer{
+    width: 100%;
+    height: 4rem;
+    background-color: transparent;
+}
+
+.nav{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-button{
+    height: 3rem !important;
+}
+
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.life-icon{
+    height: 2rem;
+    aspect-ratio: 1;
+    object-fit: contain;
+}

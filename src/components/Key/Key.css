@@ -1,0 +1,29 @@
+.key{
+    background-color: white;
+    height: 3.5rem;
+    width: 5rem;
+    border-radius: 35%;
+    display: grid;
+    place-items: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: navy;
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    transition: 500ms transform ease-in-out;
+}
+
+.key.inactive{
+    opacity: 50%;
+    cursor: default;
+}
+
+.key:hover{
+    transform: scale(1.1);
+}
+
+.key.inactive{
+    transform: scale(1);
+}

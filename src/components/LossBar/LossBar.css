@@ -1,0 +1,18 @@
+.progressbar{
+    width: 100vw;
+    max-width: 150px;
+    background-color: white;
+    height: 16px;
+    border-radius: 100vw;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.progressbar .fill{
+    background-color: rgb(12, 12, 84);
+    height: 100%;
+    border-radius: 100vh;
+    transition: 500ms width ease-in-out;
+}
