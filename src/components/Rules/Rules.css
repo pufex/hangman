@@ -77,3 +77,35 @@
     color: white;
     font-weight: 600;
 }
+
+@media (max-width: 850px){
+    .window{
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        padding: 0;
+        padding-top: 6rem;
+        gap: 0;
+    }
+
+    .rules-container{
+        position: relative !important;
+        top: 0;
+        width: 100%;
+        max-width: 100% !important;
+        height: 100%;
+        transform: translate(-50%,0);
+        gap: 0;
+        border-radius: 20px 20px 0 0 !important;
+    }
+
+    .rules{
+        border-radius: 20px 20px 0 0 !important;
+        padding: 0 !important;
+    }
+
+    .rules-list{
+        list-style-type: ;
+        padding: 0 4rem;
+    }
+}

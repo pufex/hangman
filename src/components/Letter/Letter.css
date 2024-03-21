@@ -22,3 +22,11 @@
     color: white;
     font-family: "Gothic A1", sans-serif;
 }
+
+@media (max-width: 900px){
+    .letter-container{
+        height: 2.5rem;
+        width: 2.25rem;
+        font-size: 1rem;
+    }
+}

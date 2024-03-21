@@ -27,11 +27,20 @@
     }
 }
 
+@keyframes slideup2{
+    from{
+        top: 100vh;
+    }to{
+        top: 0;
+    }
+}
+
 .failure-inner{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
 }
 
 .failure-header{
@@ -39,4 +48,47 @@
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.failure-secret-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.it-was{
+    font-size: 1.75rem;
+    color: white;
+    font-weight: 600;
+}
+
+.failure-secret{
+    font-size: 2rem;
+    background: rgb(255,0,0);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(250,149,41,1) 16%, rgba(240,255,0,1) 33%, rgba(60,250,41,1) 50%, rgba(41,67,250,1) 66%, rgb(185, 66, 225) 83%);         
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 850px){
+
+    .failure-window{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .failure-container{
+        position: relative !important;
+        left: 0 !important;
+        transform: translate(0,0);
+        width: 100% !important;
+        max-width: 500px !important;
+        height: 100% !important;
+        max-height: 500px;
+        animation-name: slideup2;
+    }
+
 }

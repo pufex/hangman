@@ -13,6 +13,19 @@
     justify-content: space-between;
 }
 
+.nav-left{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-category{
+    font-size: 2rem;
+    text-transform: capitalize;
+    color: white;
+    font-weight: 600;
+}
+
 .nav-button{
     height: 3rem !important;
 }
@@ -27,4 +40,19 @@
     height: 2rem;
     aspect-ratio: 1;
     object-fit: contain;
+}
+
+@media (max-width: 600px){
+    .nav{
+        flex-direction: column;
+        max-height: 20vh;
+    }
+
+    .nav > div{
+        width: 100%;
+    }
+
+    .nav-right{
+        justify-content: end;
+    }
 }

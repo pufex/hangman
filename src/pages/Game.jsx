@@ -141,7 +141,7 @@ const Game = () => {
         />
 
         <Gamenav 
-            category={undefined}
+            category={localStorage.getItem("currentCategory")}
             lossProgress={lossProgress}
             maxLossProgress={maxLossProgress}
         />

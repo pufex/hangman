@@ -7,12 +7,12 @@
 }
 
 .victory-container{
-    position: absolute;
+    position: absolute !important;
     left: 50%;
     bottom: 100vh;
     height: 400px;
     width: 400px !important;
-    transform: translate(-50%);
+    transform: translate(-50%, 0);
     animation-name: slidedown;
     animation-duration: 1000ms;
     animation-timing-function: ease-in-out;
@@ -23,8 +23,17 @@
     from{
         bottom: 100vh;
     }to{
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+    }
+}
+
+@keyframes slidedown2{
+    from{
+        bottom: 100vh;
+    }to{
         bottom: 0;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 50%);
     }
 }
 
@@ -43,3 +52,25 @@
     transform: translate(-50%, -50%);
 }
 
+@media (max-width: 800px){
+    .victory-window{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .victory-container{
+        position: relative !important;
+        left: 0;
+        /* bottom: 0 !important; */
+        width: 100% !important;
+        max-width: 500px !important;
+        height: 100%;
+        max-height: 500px;
+        transform: translate(0, 0) !important;
+        animation-name: slidedown2;
+    }
+
+    
+}

@@ -2,6 +2,7 @@
     background-color: white;
     height: 3.5rem;
     width: 5rem;
+    max-width: 5rem;
     border-radius: 35%;
     display: grid;
     place-items: center;
@@ -26,4 +27,13 @@
 
 .key.inactive{
     transform: scale(1);
+}
+
+@media (max-width: 900px){
+    .key{
+        width: 100%;
+        max-width: 4rem;
+        max-height: 2.75rem;
+        font-size: 1.5rem;
+    }
 }

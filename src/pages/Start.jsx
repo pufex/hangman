@@ -29,7 +29,10 @@ const Start = () => {
     let location = useNavigate();
     const [showCategories, setCategories] = useState(localStorage.getItem("category") == "true" ? true : false)
     const [showRules,setRules] = useState(false);
-
+    const [soundState, setSound] = useState({
+        playing: false,
+        url: "/boing.mp3",
+    });
     const closeRulesHandler = () => {
         setRules(!showRules);
     }
@@ -42,6 +45,7 @@ const Start = () => {
     const categoryChoiceHandler = (id) => {
         localStorage.setItem("chosen", categories[id][Math.floor(Math.random()*categories[id].length)])
         localStorage.setItem("category", "false");
+        localStorage.setItem("currentCategory", id)
         location("/game");
     }
 
@@ -53,7 +57,21 @@ const Start = () => {
         />
     })
 
+    const soundEndedHandler = () => {
+        setSound({
+            url: undefined,
+            playing: false,
+        })
+    }
+
     return <>
+        <Audio 
+            url={soundState.url}
+            playing={soundState.playing}
+            loop={false}
+            volume={0.5}
+            onEnded={soundEndedHandler}
+        />
         <Audio 
             url="/menu-song.mp3"
             playing={true}
@@ -66,6 +84,7 @@ const Start = () => {
                     className='bubble-button go-back category-goback'
                     onClick={() => {
                         setCategories(false);
+                        setSound({url: "./boing.mp3", playing: true,})
                     }}
                 ></button>
                 <div className='inner-categories'>
@@ -77,28 +96,30 @@ const Start = () => {
         {AND(showRules, !showCategories) ? <Rules 
             onClose={closeRulesHandler}
         /> : null}
-        <div className='container start-container'>
-            <div className='inner-container start'>
-                <img 
-                    src="/logo.svg" 
-                    alt="The Hangman Game" 
-                    className='logo'
-                />
-                <button
-                    className='bubble-button start-button'
-                    onClick={() => {
-                        setCategories(true);
-                    }}        
-                >
-                </button>
-                <button
-                    className='btn-prim'
-                    onClick={() => {
-                        setRules(true);
-                    }}
-                >
-                    HOW TO PLAY
-                </button>
+        <div className='the-start-root'>
+            <div className='container start-container'>
+                <div className='inner-container start'>
+                    <img 
+                        src="/logo.svg" 
+                        alt="The Hangman Game" 
+                        className='logo'
+                    />
+                    <button
+                        className='bubble-button start-button'
+                        onClick={() => {
+                            setCategories(true);
+                        }}        
+                    >
+                    </button>
+                    <button
+                        className='btn-prim'
+                        onClick={() => {
+                            setRules(true);
+                        }}
+                    >
+                        HOW TO PLAY
+                    </button>
+                </div>
             </div>
         </div>
     </>
