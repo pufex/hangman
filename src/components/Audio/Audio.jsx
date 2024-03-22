@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import ReactPlayer from 'react-player';
 
-const Audio = (props) => {
-    const {url, playing, loop, onEnded, volume, onLoad, ...rest} = props;
+
+const Audio = forwardRef((props, ref) => {
+    const {url, playing, loop, onEnded, volume, onLoad, onProgress,...rest} = props;
 
     return <>
         <ReactPlayer
@@ -15,8 +16,10 @@ const Audio = (props) => {
             width={0}
             volume={volume}
             onBuffer={onLoad}
+            onProgress={onProgress}
+            ref={ref}
         />
   </>
-}
+})
 
 export default Audio

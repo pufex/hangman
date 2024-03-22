@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Gamenav from '../components/Gamenav/Gamenav'
 import Audio from '../components/Audio/Audio'
 import Letter from '../components/Letter/Letter'
@@ -18,15 +18,43 @@ const Game = () => {
         current: hash(localStorage.getItem("chosen")),
         used: [],
     })
-    const [soundState, setSoundState] = useState({
-        url: undefined,
+
+    const [sound1State, setSound1State] = useState({
+        url: "/bullseye.mp3",
+        played: 0,
+        seeking: true,
         playing: false,
     })
+    const sound1Ref = useRef(null)
+    const sound1ProgressHandler = () => {
+        if(!sound1State.seeking)
+            setSound2State({ ...sound1State, ...state});
+    }
+    const finishSound1Handler = () => {
+        setSound1State({...sound1State, playing: false});
+    }
+    
+    const [sound2State, setSound2State] = useState({
+        url: "/wrong.mp3",
+        played: 0,
+        seeking: true,
+        playing: false,
+    })
+    const sound2Ref = useRef(null)
+    const sound2ProgressHandler = () => {
+        if(!sound2State.seeking)
+            setSound2State({ ...sound2State, ...state});
+    }
+    const finishSound2Handler = () => {
+        setSound2State({...sound2State, playing: false});
+    }
+    
     const [musicState, setMusic] = useState({
         url: "/game-song.mp3",
+        played: 0,
+        seeking: true,
         playing: true,
     })
-
     const finishMusicHandler = () => {
         setMusic({...musicState, playing: false});
     }
@@ -66,23 +94,22 @@ const Game = () => {
                 else
                     newCurrent[i] = current[i];
             }
-            setSoundState({
-                playing: true,
-                url: "/bullseye.mp3",
-            })
+            if(sound1State.playing){
+                setSound1State({...sound1State, seeking: false})
+                sound1Ref.current.seekTo(0);
+            }else setSound1State({...sound1State, playing: true,})
             setGameState({...gameState, current: newCurrent.join(""), used: newUsedArr});
         }else{
-            setSoundState({
-                playing: true,
-                url: "/wrong.mp3",
-            })
+            if(sound2State.playing){
+                setSound2State({...sound2State, seeking: false})
+                sound2Ref.current.seekTo(0);
+            }else setSound2State({...sound2State, playing: true,})
             setGameState({...gameState, lossProgress: gameState.lossProgress+1, used: newUsedArr});
         }
     }
 
     useEffect(() => {
         if(secret == current){
-
             setOutcome(1)
         }
         else if(lossProgress == maxLossProgress){
@@ -103,12 +130,6 @@ const Game = () => {
         />
     })
 
-    const soundEndedHandler = () => {
-        setSoundState({
-            url: "",
-            playing: false,
-        })
-    }
 
     return <>
         {
@@ -131,13 +152,24 @@ const Game = () => {
             url={musicState.url}
             loop={true}
             playing={musicState.playing}
-            onEnded={soundEndedHandler}
+            onEnded={finishMusicHandler}
             volume={0.25}
         />
         <Audio
-            url={soundState.url}
+            url={sound1State.url}
             loop={false}
-            playing={soundState.playing}
+            playing={sound1State.playing}
+            onProgress={sound1ProgressHandler}
+            onEnded={finishSound1Handler}
+            ref={sound1Ref}
+            />
+        <Audio
+            url={sound2State.url}
+            loop={false}
+            playing={sound2State.playing}
+            onProgress={sound2ProgressHandler}
+            onEnded={finishSound2Handler}
+            ref={sound2Ref}
         />
 
         <Gamenav 

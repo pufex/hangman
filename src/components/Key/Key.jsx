@@ -16,9 +16,6 @@ const Key = (props) => {
     else {
         return <div 
         className="key inactive"
-        onClick={() => {
-            onPress(letter);
-        }}
     >
     </div>
     }
